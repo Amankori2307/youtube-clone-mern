@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import cron from 'node-cron';
+import { CRON_INTERVAL } from './server/constants/index.js';
+import { fetchYouTubeVideos } from './server/utils/index.js';
 
 dotenv.config();
 const app = express();
@@ -19,8 +21,9 @@ mongoose.connect(uri, { useNewUrlParser: true }, () => {
 app.use(express.json());
 
 // Setting up cron job
-cron.schedule('*/1 * * * * *', () => {
+cron.schedule(`*/${CRON_INTERVAL} * * * * *`, () => {
     console.log('running a task every second');
+    fetchYouTubeVideos();
 });
 
 // Listening to the port
