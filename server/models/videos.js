@@ -20,7 +20,11 @@ const snippetSchema = new Schema({
 });
 
 const videoIdShema = new Schema({
-    videoId: String
+    videoId: {
+        type: String,
+        unique: true,
+        required: true
+    }
 });
 
 const videoSchema = new Schema({

@@ -27,8 +27,9 @@ app.use(express.json());
 
 // Setting up cron job
 cron.schedule(`*/${CRON_INTERVAL} * * * * *`, () => {
-    console.log('running a task every second');
-    // fetchYouTubeVideos();
+    console.log('Starting running fetch youtube videos CRON');
+    fetchYouTubeVideos();
+    console.log('Finished running fetch youtube videos CRON');
 });
 
 // Routes
