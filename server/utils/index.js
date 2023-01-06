@@ -20,7 +20,7 @@ export const saveVideos = (videos) => {
             console.log(`Succussfully saved ${videos.length} new videos`);
         })
         .catch((err) => {
-        console.log('Error while saving videos');
+            console.log('Error while saving videos');
             console.log(err.message);
         });
 };
@@ -37,7 +37,8 @@ export const fetchYouTubeVideos = () => {
             type: 'video',
             key: process.env.YOUTUBE_API_KEYS.split(' ')[global.CURRENT_YOUTUBE_KEY],
             part: 'snippet',
-            maxResults: 50
+            maxResults: 50,
+            relevanceLanguage: 'en'
         },
     };
     return axios(config);
