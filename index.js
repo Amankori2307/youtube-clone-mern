@@ -1,3 +1,4 @@
+import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
@@ -24,6 +25,8 @@ mongoose.connect(uri, {
 
 // Calling the express.json() method for parsing
 app.use(express.json());
+// Calling cors
+app.use(cors());
 
 // Setting up cron job
 cron.schedule(`*/${CRON_INTERVAL} * * * * *`, () => {
