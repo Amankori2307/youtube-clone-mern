@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`${BASE_URL}/videos`)
+    axios.get(`${BASE_URL}/videos?pageSize=20`)
       .then((data) => {
         if (data.status === axios.HttpStatusCode.Ok) {
           const videos = data.data.data.items

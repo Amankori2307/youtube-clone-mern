@@ -1,10 +1,9 @@
 .videoList {
     flex: 30%;
     height: 100%;
-    background-color: lightcoral;
-    padding: 2rem 1rem;
+    padding: 1rem;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    border: 1px solid grey;
 }
