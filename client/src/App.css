@@ -15,8 +15,16 @@ html {
     height: 100vh;
 }
 
-.endMessage, .loading {
+.endMessage,
+.loading {
     width: 100%;
     text-align: center;
     padding: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+    .App {
+        flex-direction: column;
+        height: unset;
+    }
 }

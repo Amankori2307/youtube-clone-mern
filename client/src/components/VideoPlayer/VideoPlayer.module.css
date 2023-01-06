@@ -23,3 +23,14 @@
     font-size: 1.4rem;
     color: gray;
 }
+
+@media screen and (max-width: 600px) {
+    .videoPlayer {
+        flex: 100%;
+    }
+
+    .video {
+        width: 100%;
+        height: 30rem;
+    }
+}

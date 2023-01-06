@@ -32,7 +32,7 @@ function VideoList({ videos, setVideos, nextPage, setNextPage, setTotalVideos, t
                         <b>Loading...</b>
                     </p>
                 }
-                scrollableTarget="scrollableDiv"
+                scrollableTarget={window.innerWidth > 600 ? 'scrollableDiv' : undefined}
                 endMessage={
                     <p className='endMessage'>
                         <b>Yay! You have seen it all</b>
