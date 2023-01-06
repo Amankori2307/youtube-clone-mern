@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import cron from 'node-cron';
 import { CRON_INTERVAL } from './server/constants/index.js';
 import router from './server/routes/index.js';
-import { fetchYouTubeVideos } from './server/utils/index.js';
+import { updateVideosInDB } from './server/utils/index.js';
 
 dotenv.config();
 const app = express();
@@ -28,7 +28,7 @@ app.use(express.json());
 // Setting up cron job
 cron.schedule(`*/${CRON_INTERVAL} * * * * *`, () => {
     console.log('Starting running fetch youtube videos CRON');
-    fetchYouTubeVideos();
+    updateVideosInDB();
     console.log('Finished running fetch youtube videos CRON');
 });
 

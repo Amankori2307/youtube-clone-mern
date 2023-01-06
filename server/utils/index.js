@@ -7,7 +7,6 @@ import Video from '../models/videos.js';
 
 global.CURRENT_YOUTUBE_KEY = 0;
 const QUERY = 'bts | trending | music | cricket | football | sports | fifa';
-// const QUERY = 'new | reels | tiktok | influencer | fashion';
 
 export const getPublishedAfterDate = () => {
     const now = new Date();
@@ -38,9 +37,14 @@ export const fetchYouTubeVideos = () => {
             type: 'video',
             key: process.env.YOUTUBE_API_KEYS.split(' ')[global.CURRENT_YOUTUBE_KEY],
             part: 'snippet',
+            maxResults: 50
         },
     };
-    axios(config)
+    return axios(config);
+};
+
+export const updateVideosInDB = () => {
+    fetchYouTubeVideos()
         .then((response) => {
             if (response.status === 200) {
                 const videos = response.data.items;
@@ -58,3 +62,10 @@ export const fetchYouTubeVideos = () => {
             }
         });
 };
+
+export const genResponseObject = (success, error, message = '', data = {}) => ({
+    success,
+    error,
+    message,
+    data
+});

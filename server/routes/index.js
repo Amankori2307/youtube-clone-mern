@@ -1,9 +1,8 @@
 import express from 'express';
+import videoCtrl from '../controllers/index.js';
 
 const router = express.Router();
 
-router.get('', (req, res) => {
-    res.send('Hello World');
-});
+router.get('/videos', videoCtrl.getVideos);
 
 export default router;
