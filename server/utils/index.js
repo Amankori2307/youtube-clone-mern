@@ -20,7 +20,7 @@ export const saveVideos = (videos) => {
             console.log(`Succussfully saved ${videos.length} new videos`);
         })
         .catch((err) => {
-            console.log('Error while saving videos');
+        console.log('Error while saving videos');
             console.log(err.message);
         });
 };

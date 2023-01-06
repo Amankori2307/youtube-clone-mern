@@ -25,6 +25,7 @@ mongoose.connect(uri, {
 
 // Calling the express.json() method for parsing
 app.use(express.json());
+
 // Calling cors
 app.use(cors());
 

@@ -48,6 +48,7 @@ function App() {
             setNextPage={setNextPage}
             setTotalVideos={setTotalVideos}
             totalVideos={totalVideos}
+            setActiveVideo={setActiveVideo}
           />
         </>
       }

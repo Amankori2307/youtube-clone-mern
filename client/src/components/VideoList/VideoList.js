@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchVideos } from '../../utils';
 import Video from '../Video/Video';
 import style from './VideoList.module.css';
-function VideoList({ videos, setVideos, nextPage, setNextPage, setTotalVideos, totalVideos }) {
+function VideoList({ videos, setVideos, nextPage, setNextPage, setTotalVideos, totalVideos, setActiveVideo }) {
 
     const fetchMoreData = () => {
         fetchVideos(nextPage)
@@ -39,7 +39,7 @@ function VideoList({ videos, setVideos, nextPage, setNextPage, setTotalVideos, t
                     </p>
                 }
             >
-                {videos.map((video, index) => <Video key={index} video={video} />)}
+                {videos.map((video, index) => <Video key={index} video={video} setActiveVideo={setActiveVideo} />)}
 
             </InfiniteScroll>
         </div>
