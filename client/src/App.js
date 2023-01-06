@@ -7,10 +7,11 @@ import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 const BASE_URL = 'http://localhost:5000'
 
 
+
 function App() {
   const [videos, setVideos] = useState([]);
   const [activeVideo, setActiveVideo] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);

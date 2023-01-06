@@ -1,4 +1,25 @@
 .videoPlayer {
     flex: 70%;
     height: 100%;
+    padding: 2rem 2rem;
+}
+
+.video {
+    width: 100%;
+    height: 40rem;
+}
+
+.video iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    margin-top: 2rem;
+}
+
+.description {
+    margin-top: 0.8rem;
+    font-size: 1.4rem;
+    color: gray;
 }
