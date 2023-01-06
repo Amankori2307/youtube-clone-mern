@@ -1,19 +1,14 @@
 import React from 'react'
-import loadingGif from '../../assets/images/loading10.gif'
+import loadingGif from '../../assets/images/loading.gif'
 import style from './Loading.module.css'
-function Loading({ center, horizontalCenter, width = 10, height = 10 }) {
+function Loading({ center }) {
     return (
         <div
-            className={`${style.loading} ${center ? style.center : ''} ${horizontalCenter ? style.horizontalCenter : ''}`}
-
-        >
+            className={`${style.loading}  ${center ? style.center : ''}`}>
             <img
                 src={loadingGif}
-                alt="loading..."
-                style={{
-                    width: `${width}rem`,
-                    height: `${height}rem`
-                }} />
+                alt="loading..." />
+
         </div>
     )
 }

@@ -1,16 +1,11 @@
 .center {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.horizontalCenter{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
 
 .loading img {
     width: 10rem;
