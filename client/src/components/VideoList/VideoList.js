@@ -4,24 +4,21 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchVideos } from '../../utils';
 import Video from '../Video/Video';
 import style from './VideoList.module.css';
-
-
-
-function VideoList({ videos, setVideos, nextPage, setNextPage }) {
+function VideoList({ videos, setVideos, nextPage, setNextPage, setTotalVideos, totalVideos }) {
 
     const fetchMoreData = () => {
         fetchVideos(nextPage)
             .then((data) => {
                 if (data.status === axios.HttpStatusCode.Ok) {
-                    const videos = data.data.data.items
-                    setVideos(prev => [...prev, ...videos])
+                    const items = data.data.data.items
+                    setVideos([...videos, ...items])
                     setNextPage(prev => prev + 1)
+                    setTotalVideos(data.data.data.pageInfo.totalResults)
                 }
             })
             .catch((err) => {
                 window.alert("Something went wrong");
             })
-        console.log("Fetch Data")
     }
 
     return (
@@ -29,9 +26,18 @@ function VideoList({ videos, setVideos, nextPage, setNextPage }) {
             <InfiniteScroll
                 dataLength={videos.length}
                 next={fetchMoreData}
-                hasMore={true}
-                loader={<h4>Loading...</h4>}
+                hasMore={totalVideos !== videos.length}
+                loader={
+                    <p className='loading'>
+                        <b>Loading...</b>
+                    </p>
+                }
                 scrollableTarget="scrollableDiv"
+                endMessage={
+                    <p className='endMessage'>
+                        <b>Yay! You have seen it all</b>
+                    </p>
+                }
             >
                 {videos.map((video, index) => <Video key={index} video={video} />)}
 

@@ -13,15 +13,17 @@ function App() {
   const [activeVideo, setActiveVideo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [nextPage, setNextPage] = useState(1);
+  const [totalVideos, setTotalVideos] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
 
-    fetchVideos(nextPage).then((data) => {
+    fetchVideos().then((data) => {
       if (data.status === axios.HttpStatusCode.Ok) {
         const videos = data.data.data.items
         setVideos(videos)
-        setNextPage(prev => prev + 1)
+        setNextPage(2)
+        setTotalVideos(data.data.data.pageInfo.totalResults)
         if (videos.length) setActiveVideo(videos[0]);
       }
     })
@@ -39,7 +41,14 @@ function App() {
       {
         !isLoading && <>
           <VideoPlayer video={activeVideo} />
-          <VideoList videos={videos} setVideos={setVideos} nextPage={nextPage} setNextPage={setNextPage}/>
+          <VideoList
+            videos={videos}
+            setVideos={setVideos}
+            nextPage={nextPage}
+            setNextPage={setNextPage}
+            setTotalVideos={setTotalVideos}
+            totalVideos={totalVideos}
+          />
         </>
       }
     </div >

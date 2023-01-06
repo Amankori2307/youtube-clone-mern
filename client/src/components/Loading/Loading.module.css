@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.horizontalCenter{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .loading img {
     width: 10rem;
     height: 10rem;
