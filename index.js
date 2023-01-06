@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import cron from 'node-cron';
+import path from 'path';
 import { CRON_INTERVAL } from './server/constants/index.js';
 import router from './server/routes/index.js';
 import { updateVideosInDB } from './server/utils/index.js';
@@ -38,6 +39,14 @@ cron.schedule(`*/${CRON_INTERVAL} * * * * *`, () => {
 
 // Routes
 app.use('/', router);
+
+// For production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+    });
+}
 
 // Listening to the port
 const port = process.env.PORT;
