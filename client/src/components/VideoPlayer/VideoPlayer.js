@@ -1,9 +1,21 @@
 import React from 'react';
 import style from './VideoPlayer.module.css';
 
-function VideoPlayer() {
+function VideoPlayer({ video }) {
     return (
-        <div className={style.videoPlayer}>VideoPlayer</div>
+        <>
+            {
+                video && <div className={style.videoPlayer}>
+                    <div className={style.video}>
+
+                    </div>
+                    <div>
+                        <h1>{video.snippet.title}</h1>
+                        <p>{video.snippet.description}</p>
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
+import Loading from './components/Loading/Loading';
 import VideoList from './components/VideoList/VideoList';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 const BASE_URL = 'http://localhost:5000'
@@ -9,7 +10,10 @@ const BASE_URL = 'http://localhost:5000'
 function App() {
   const [videos, setVideos] = useState([]);
   const [activeVideo, setActiveVideo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     axios.get(`${BASE_URL}/videos`)
       .then((data) => {
         if (data.status === axios.HttpStatusCode.Ok) {
@@ -21,12 +25,20 @@ function App() {
       .catch((err) => {
         window.alert("Something went wrong");
       })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }, [])
 
   return (
     <div className="App">
-      <VideoPlayer video={activeVideo} />
-      <VideoList videos={videos} />
+      {isLoading && <Loading center />}
+      {
+        !isLoading && <>
+          <VideoPlayer video={activeVideo} />
+          <VideoList videos={videos} />
+        </>
+      }
     </div >
   );
 }
