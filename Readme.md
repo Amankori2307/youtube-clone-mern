@@ -1,4 +1,4 @@
-# Napqueen Assignment
+# Application using YouTube Data API
 
 ## Steps to run this project
 - Install dependecies by running `npm install`
